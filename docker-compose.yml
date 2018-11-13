@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    restart: always
+  portal:
+    build: .
+    command: npm start
+    environment:
+      MONGO_SERVER: mongodb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb

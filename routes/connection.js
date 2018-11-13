@@ -5,7 +5,8 @@ let collections = {};
 
 exports.init = function() {
   console.log("init")
-  return MongoClient.connect('mongodb://127.0.0.1:27017/CodeWhispers')
+  let mongoServer = process.env.MONGO_SERVER || '127.0.0.1'
+  return MongoClient.connect(`mongodb://${mongoServer}:27017/CodeWhispers`)
   .then((database) => {
     client = database.db("whipser")
   })
